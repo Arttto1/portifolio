@@ -1,56 +1,42 @@
 "use client";
 
-import MainPageHero from "@/components/mainpage-hero/mainpage-hero";
-import Technologies from "@/components/techs";
 import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+
 import classes from "./page.module.css";
 
-import { useState, useEffect, useRef } from "react";
-
-export default function Home() {
+export default function Test2() {
   const arthurImage = useRef(null);
-  const blueSquare = useRef(null);
+  const arthurText = useRef(null);
   const mainPage = useRef(null);
-  const positionY = useRef(0);
-  const [overflow, setOverflow] = useState("hidden");
+  const animated = useRef(false)
 
-  function deslocarDivs(e) {
-    const maxValue = (window.innerWidth + blueSquare.current.offsetWidth) / 2;
-
-    if (mainPage.current.style.scale === "1") {
-      setOverflow("visible");
-    } else {
-      e.preventDefault();
-      setOverflow("hidden");
+  function animateHero(e) {
+    console.log(e.deltaY)
+    if (e.deltaY > 0 && !animated.current) {
+      arthurImage.current.style.transform = "translateX(1000px)";
+      arthurText.current.style.transform = "translateX(-1000px)";
+      animated.current = true
     }
-
-    if (window.scrollY === 0) {
-      positionY.current = Math.max(
-        0,
-        Math.min(maxValue, positionY.current + e.deltaY)
-      );
-    }
-
-    if (positionY.current >= 0 && window.scrollY === 0) {
-      arthurImage.current.style.transform = `translateX(${positionY.current}px)`;
-      blueSquare.current.style.transform = `translateX(${-positionY.current}px)`;
-      mainPage.current.style.scale = Math.min(1, positionY.current / maxValue);
-      mainPage.current.style.opacity = Math.min(
-        1,
-        positionY.current / maxValue
-      );
+    else{
+      arthurImage.current.style.transform = "translateX(0)";
+      arthurText.current.style.transform = "translateX(0)";
+      animated.current = false
     }
   }
 
   useEffect(() => {
-    window.addEventListener("wheel", deslocarDivs, { passive: false });
-    return () => window.removeEventListener("wheel", deslocarDivs);
-  }, [overflow]);
+    window.addEventListener("wheel", animateHero);
+
+    return () => {
+      window.removeEventListener("wheel", animateHero);
+    };
+  },[]);
 
   return (
     <>
       <header className="overflow-hidden absolute h-full w-full flex flex-col items-center justify-center descer z-10">
-        <div ref={arthurImage}>
+        <div ref={arthurImage} className="duration-1000 ease-in-out">
           <div className="border-4  border-black shadow-[0_0_4px_2px_rgb(256,256,256)] w-[250px] object-cover overflow-hidden rounded-full photo-fall">
             <Image
               src={"/Foto Arthur.webp"}
@@ -62,7 +48,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div ref={blueSquare} className="w-fit" id="arthurNunes">
+        <div
+          ref={arthurText}
+          className="w-fit duration-1000 ease-in-out"
+          id="arthurNunes"
+        >
           <div className="line"></div>
           <svg
             width="399"
@@ -85,7 +75,7 @@ export default function Home() {
       <main
         ref={mainPage}
         className="w-full h-full flex flex-col gap-8 items-center mainPage"
-        style={{ scale: 0, opacity: 0, overflow: overflow }}
+        style={{ scale: 0, opacity: 0 }}
       >
         <h1 className="mt-16 border-b-[3px] border-white rounded-full p-2 px-8">
           Seja bem-vindo ao meu portifólio
