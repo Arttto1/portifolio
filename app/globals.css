@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.fadeIn {
+  animation: fadeIn 1.5s ease-in-out 5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    scale: 90%;
+  }
+  to {
+    opacity: 100%;
+    scale: 100%;
+  }
+}
+
+.hero {
+  animation: appear 1.5s ease-in-out 0.1s forwards;
+  transform-origin: left;
+}
+
+@keyframes appear {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 100%;
+    opacity: 100%;
+  }
+}
+
+.elevate {
+  animation: elevate 0.5s ease-in-out 6s forwards;
+}
+
+@keyframes elevate{
+  to{
+    top: 0
+  }
+}
+
+.photo-fall{
+  opacity: 0;
+  scale: 0.5;
+  animation: fall 0.5s ease-in forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-200%);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 100%;
+    scale: 100%;
+  }
+}
+
+.line{
+  margin: 10px 0px;
+  width: auto;
+  opacity: 0;
+  height: 2px;
+  background: linear-gradient(to left, #000000, #ffffff, #000000);
+  animation: expandLine 2s ease-out forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes expandLine {
+  to {
+    opacity: 100%;
+  }
+}
+
+.text-bounce {
+  animation: bounce 0.2s linear forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.descer {
+  transform: translateY(-20vh);
+  animation: descer 0.1s ease-out forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes descer {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.mainPage {
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+}
