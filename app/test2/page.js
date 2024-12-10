@@ -1,42 +1,59 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 
 import classes from "./page.module.css";
+import Technologies from "@/components/techs";
 
 export default function Test2() {
   const arthurImage = useRef(null);
   const arthurText = useRef(null);
   const mainPage = useRef(null);
-  const animated = useRef(false)
+  const deltaY = useRef(0);
+  const animated = useRef(false);
 
-  function animateHero(e) {
-    console.log(e.deltaY)
-    if (e.deltaY > 0 && !animated.current) {
-      arthurImage.current.style.transform = "translateX(1000px)";
-      arthurText.current.style.transform = "translateX(-1000px)";
-      animated.current = true
-    }
-    else{
-      arthurImage.current.style.transform = "translateX(0)";
-      arthurText.current.style.transform = "translateX(0)";
-      animated.current = false
+  const animationRange = window.innerWidth;
+
+  function animate() {
+    arthurImage.current.style.transform = `translateX(${animationRange}px)`;
+    arthurText.current.style.transform = `translateX(${-animationRange}px)`;
+    mainPage.current.style.opacity = "1";
+    mainPage.current.style.scale = "1";
+  }
+
+  function unanimate() {
+    arthurImage.current.style.transform = "translateX(0)";
+    arthurText.current.style.transform = "translateX(0)";
+    mainPage.current.style.opacity = "0";
+    mainPage.current.style.scale = "0";
+  }
+
+  function callAnimation(e) {
+    deltaY.current = e.deltaY;
+    console.log(deltaY);
+    if (deltaY.current > 0 && !animated.current) {
+      animated.current = true;
+      animate();
+    } else if (deltaY.current < 0 && animated.current) {
+      animated.current = false;
+      unanimate();
     }
   }
 
   useEffect(() => {
-    window.addEventListener("wheel", animateHero);
+    window.addEventListener("wheel", callAnimation);
 
     return () => {
-      window.removeEventListener("wheel", animateHero);
+      window.removeEventListener("wheel", callAnimation);
     };
-  },[]);
+  }, []);
 
   return (
     <>
-      <header className="overflow-hidden absolute h-full w-full flex flex-col items-center justify-center descer z-10">
-        <div ref={arthurImage} className="duration-1000 ease-in-out">
+      <section className="overflow-hidden absolute h-full w-full flex flex-col items-center justify-center descer z-10">
+        <div ref={arthurImage} className="duration-[1000ms] linear">
           <div className="border-4  border-black shadow-[0_0_4px_2px_rgb(256,256,256)] w-[250px] object-cover overflow-hidden rounded-full photo-fall">
             <Image
               src={"/Foto Arthur.webp"}
@@ -50,7 +67,7 @@ export default function Test2() {
 
         <div
           ref={arthurText}
-          className="w-fit duration-1000 ease-in-out"
+          className="w-fit duration-[1000ms] linear"
           id="arthurNunes"
         >
           <div className="line"></div>
@@ -71,45 +88,62 @@ export default function Test2() {
             <p>Fullstack Web Developer</p>
           </div>
         </div>
-      </header>
-      <main
+      </section>
+      <section
         ref={mainPage}
-        className="w-full h-full flex flex-col gap-8 items-center mainPage"
+        className="w-full h-full flex gap-16 justify-center mainPage duration-1000 ease-in-out"
         style={{ scale: 0, opacity: 0 }}
       >
-        <h1 className="mt-16 border-b-[3px] border-white rounded-full p-2 px-8">
-          Seja bem-vindo ao meu portifólio
-        </h1>
-        <p className="max-w-[75vw]">
-          Meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou estudante do
-          curso de Análise e Desenvolvimento de Sistemas.
-        </p>
-        <p className="max-w-[75vw]">
-          Antes de entrar para o mundo da tecnologia, cursei dois anos de
-          Ciências Econômicas na UNESP. No entanto, percebi que não me via
-          atuando nessa área e senti que algo estava faltando.
-        </p>
-        <p className="max-w-[75vw]">
-          Foi então que comecei meus estudos em programação, começando com
-          Python em casa e C++ na faculdade. Quando entrei no vasto mundo do
-          desenvolvimento Web, me apaixonei pela área e finalmente me encontrei
-          no lugar certo.
-        </p>
-        <p className="max-w-[75vw]">
-          Fico fascinado com a liberdade criativa e com os desafios lógicos que
-          surgem. Quando consigo resolver um problema, a satisfação é imensa e
-          única.
-        </p>
-        <p className="max-w-[75vw]">
-          Estou constantemente em busca de aprender mais e me aprimorar, pois
-          acredito que cada novo aprendizado é uma oportunidade de crescimento e
-          realização.
-        </p>
-        <p className="max-w-[75vw]">
-          Agradeço pelo acesso ao meu portifólio, estou à disposição para
-          conversar e trocar conhecimento sempre.
-        </p>
-      </main>
+        <header className="max-w-[30vw] flex flex-col gap-2 items-center justify-center">
+          <div className="border-4  border-black shadow-[0_0_4px_2px_rgb(256,256,256)] w-[250px] h-[250px] object-cover overflow-hidden rounded-full">
+            <Image
+              src={"/Foto Arthur.webp"}
+              width={1024}
+              height={1024}
+              alt="Arthur Nunes image"
+              className="scale-150 -translate-x-1"
+            ></Image>
+          </div>
+          <h1>Sobre Mim</h1>
+          <p>
+            Meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou estudante do
+            curso de Análise e Desenvolvimento de Sistemas.
+          </p>
+          <p>
+            Fascinado com a liberdade criativa e com os desafios lógicos que
+            surgem. Quando consigo resolver um problema, a satisfação é imensa e
+            única.
+          </p>
+          <p>
+            Estou constantemente em busca de aprender mais e me aprimorar, pois
+            acredito que cada novo aprendizado é uma oportunidade de crescimento
+            e realização.
+          </p>
+          <p>
+            Agradeço pelo acesso ao meu portifólio, estou à disposição para
+            conversar e trocar conhecimento sempre.
+          </p>
+        </header>
+        <main className="flex flex-col items-center">
+          <nav>
+            <ul className="list-none text-2xl flex gap-8">
+              <li>
+                <Link href={"/"}>Habilidades</Link>
+              </li>
+              <li>
+                <Link href={"/"}>Serviços</Link>
+              </li>
+              <li>
+                <Link href={"/"}>Projetos</Link>
+              </li>
+              <li>
+                <Link href={"/"}>Contato</Link>
+              </li>
+            </ul>
+          </nav>
+          <Technologies />
+        </main>
+      </section>
     </>
   );
 }

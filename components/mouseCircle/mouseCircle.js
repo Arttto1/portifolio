@@ -15,7 +15,7 @@ export default function MouseCircle() {
     window.addEventListener("mousemove", moveCircle);
 
     return () => window.removeEventListener("mousemove", moveCircle);
-  });
+  }, []);
 
   return (
     <div
