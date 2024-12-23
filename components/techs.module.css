@@ -3,8 +3,8 @@
 }
 
 .techs div div {
-  width: 90px;
-  height: 90px;
+  width: 200px;
+  height: 200px;
   border: 2px solid white;
   border-radius: 10px;
   place-content: center;
@@ -19,8 +19,8 @@
   gap: 5px;
 }
 
-.techs {
+/* .techs {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-}
+} */

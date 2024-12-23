@@ -3,7 +3,7 @@ import classes from "./techs.module.css";
 
 export default function Technologies() {
   return (
-    <div className={classes.techs}>
+    <div className={`${classes.techs} grid grid-rows-3 grid-cols-3 gap-4`}>
       <div>
         <div>
           <Image

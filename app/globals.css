@@ -24,52 +24,11 @@ p {
   color: white;
 }
 
-.fadeIn {
-  animation: fadeIn 1.5s ease-in-out 5s forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    scale: 90%;
-  }
-  to {
-    opacity: 100%;
-    scale: 100%;
-  }
-}
-
-.hero {
-  animation: appear 1.5s ease-in-out 0.1s forwards;
-  transform-origin: left;
-}
-
-@keyframes appear {
-  from {
-    scale: 0;
-    opacity: 0;
-  }
-  to {
-    scale: 100%;
-    opacity: 100%;
-  }
-}
-
-.elevate {
-  animation: elevate 0.5s ease-in-out 6s forwards;
-}
-
-@keyframes elevate{
-  to{
-    top: 0
-  }
-}
-
-.photo-fall{
+.photo-fall {
   opacity: 0;
   scale: 0.5;
   animation: fall 0.5s ease-in forwards;
-  animation-delay: 3s;
+  animation-delay: 2.25s;
 }
 
 @keyframes fall {
@@ -83,7 +42,38 @@ p {
   }
 }
 
-.line{
+/* ANIMAÇÃO DA BORDA DA IMAGEM */
+
+@property --border-animation{
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.image-border-animation{
+  position: relative;
+}
+
+.image-border-animation::after, .image-border-animation::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  background: conic-gradient(from var(--border-animation), transparent , rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  border-radius: 100%;
+  animation: rotation 20s linear infinite;
+}
+
+.image-border-animation::before {
+  filter: blur(50px);
+}
+
+@keyframes rotation {
+  0%{ --border-animation: 0deg;}
+  100% {--border-animation: 360deg;}
+}
+
+.line {
   margin: 10px 0px;
   width: auto;
   opacity: 0;
@@ -99,27 +89,10 @@ p {
   }
 }
 
-.text-bounce {
-  animation: bounce 0.2s linear forwards;
-  animation-delay: 3.5s;
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  10% {
-    transform: translateY(20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 .descer {
   transform: translateY(-20vh);
   animation: descer 0.1s ease-out forwards;
-  animation-delay: 3.5s;
+  animation-delay: 2.75s;
 }
 
 @keyframes descer {
@@ -136,3 +109,220 @@ p {
     font-size: 1.25rem;
   }
 }
+
+/* LINHA COM GRADIENTE ANIMADO */
+
+.line-gradientY {
+  height: 80vh;
+  width: 2px;
+  background: linear-gradient(transparent, rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  background-size: 100% 200%;
+  animation: animateGradientY 20s linear infinite;
+}
+
+.line-gradientX {
+  height: 2px;
+  width: 90vw;
+  background: linear-gradient(to right,transparent, rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  background-size: 200% 100%;
+  animation: animateGradientX 20s linear infinite;
+}
+
+@keyframes animateGradientY {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+@keyframes animateGradientX {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* GRID DAS HABILIDADES */
+
+.habilidades-grid {
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+    border-radius: 10px;
+    position: relative;
+    background-color: black;
+  }
+  div::after, div::before{
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: linear-gradient(to top, transparent, rgb(105, 12, 255) ,transparent);
+    border-radius: 10px;
+    background-size: 100% 200%;
+    animation: animate-grid-border 20s linear infinite;
+  }
+  div::before {
+    filter: blur(5px);
+  }
+}
+
+@keyframes animate-grid-border {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+/* NAVIGATION ACTIVE */
+
+.nav-hover:hover {
+  scale: 120%;
+  background: linear-gradient(to top,rgb(105, 12, 255), rgb(11, 112, 245), rgb(105, 12, 255));
+  background-size: 100% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animateGradientY 5s linear infinite;
+}
+
+.nav-active {
+  scale: 120%;
+  background: linear-gradient(to top,rgb(105, 12, 255), rgb(11, 112, 245), rgb(105, 12, 255));
+  background-size: 100% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animateGradientY 5s linear infinite;
+}
+
+/* ------MAIN PAGE ANIMATIONS ------ */
+
+/* NAV ANIMATION */
+
+@keyframes descerNav {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-geral {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0s;
+}
+.nav-projetos {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+.nav-serviços {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+.nav-contato {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+.subir-texto-habilidades {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0.4s;
+}
+
+
+.aumentar-habilidades {
+  animation: descerNav 1s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* SOBRE MIM ANIMATION  */
+
+@keyframes translateX {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate-image {
+  animation: translateX 1s ease-in-out forwards;
+  animation-delay: 0.6s;
+}
+
+.translate-title {
+  animation: translateX 1s ease-in-out forwards;
+  animation-delay: .7s;
+}
+
+.translate-text1 {
+  animation: translateX 1s ease-in-out forwards;
+  animation-delay: .8s;
+}
+
+.translate-text2 {
+  animation: translateX 1s ease-in-out forwards;
+  animation-delay: .9s;
+}
+
+/*PÁGINA DE CONTATO */
+
+.form {
+  div{
+    display: flex;
+    flex-direction: column;
+  }
+
+  label{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input{
+    height: 2rem;
+    border-radius: 6px;
+    background-color: black;
+    border: 2px solid white;
+  }
+
+  div div {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  div div:focus-within::after, div div:focus-within::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    z-index: 1;
+    background-image: conic-gradient(from var(--border-animation), transparent 70%, rgb(105, 12, 255) 30%);
+    border-radius: 6px;
+    animation: rotation 10s linear infinite;
+  }
+  
+  div div:focus-within::before {
+    filter: blur(5px);
+  }
+
+  input:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+    border: inherit;
+  }
+
+  textarea{
+    border-radius: 6px;
+    height: 6rem;
+    resize: none;
+  }
+}
+

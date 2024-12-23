@@ -1,7 +1,5 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/navbar/navbar";
-import MouseCircle from "@/components/mouseCircle/mouseCircle";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -23,8 +21,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <MouseCircle />
-        {/* <NavBar /> */}
         {children}
       </body>
     </html>

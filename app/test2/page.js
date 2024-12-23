@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 
 import classes from "./page.module.css";
-import Technologies from "@/components/techs";
+import Habilidades from "@/components/habilidades";
+import NavLink from "@/components/navLink";
 
 export default function Test2() {
   const arthurImage = useRef(null);
@@ -13,6 +13,7 @@ export default function Test2() {
   const mainPage = useRef(null);
   const deltaY = useRef(0);
   const animated = useRef(false);
+  const [animationValid, setAnimationValid] = useState(false);
 
   const animationRange = window.innerWidth;
 
@@ -35,6 +36,7 @@ export default function Test2() {
     console.log(deltaY);
     if (deltaY.current > 0 && !animated.current) {
       animated.current = true;
+      setAnimationValid(true);
       animate();
     } else if (deltaY.current < 0 && animated.current) {
       animated.current = false;
@@ -52,16 +54,18 @@ export default function Test2() {
 
   return (
     <>
-      <section className="overflow-hidden absolute h-full w-full flex flex-col items-center justify-center descer z-10">
+      <section className="overflow-hidden absolute h-[100vh] w-full flex flex-col items-center justify-center descer z-0">
         <div ref={arthurImage} className="duration-[1000ms] linear">
-          <div className="border-4  border-black shadow-[0_0_4px_2px_rgb(256,256,256)] w-[250px] object-cover overflow-hidden rounded-full photo-fall">
-            <Image
-              src={"/Foto Arthur.webp"}
-              width={1024}
-              height={1024}
-              alt="Arthur Nunes image"
-              className="scale-150 -translate-x-1"
-            ></Image>
+          <div className="image-border-animation photo-fall">
+            <div className="border-4  border-black w-[250px] object-cover overflow-hidden rounded-full ">
+              <Image
+                src={"/Foto Arthur.webp"}
+                width={1024}
+                height={1024}
+                alt="Arthur Nunes image"
+                className="scale-150 -translate-x-1"
+              ></Image>
+            </div>
           </div>
         </div>
 
@@ -91,57 +95,79 @@ export default function Test2() {
       </section>
       <section
         ref={mainPage}
-        className="w-full h-full flex gap-16 justify-center mainPage duration-1000 ease-in-out"
+        className="overflow-hidden h-[100vh] max-w-[80vw] m-auto pt-16 mainPage duration-1000 ease-in-out"
         style={{ scale: 0, opacity: 0 }}
       >
-        <header className="max-w-[30vw] flex flex-col gap-2 items-center justify-center">
-          <div className="border-4  border-black shadow-[0_0_4px_2px_rgb(256,256,256)] w-[250px] h-[250px] object-cover overflow-hidden rounded-full">
-            <Image
-              src={"/Foto Arthur.webp"}
-              width={1024}
-              height={1024}
-              alt="Arthur Nunes image"
-              className="scale-150 -translate-x-1"
-            ></Image>
-          </div>
-          <h1>Sobre Mim</h1>
-          <p>
-            Meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou estudante do
-            curso de Análise e Desenvolvimento de Sistemas.
-          </p>
-          <p>
-            Fascinado com a liberdade criativa e com os desafios lógicos que
-            surgem. Quando consigo resolver um problema, a satisfação é imensa e
-            única.
-          </p>
-          <p>
-            Estou constantemente em busca de aprender mais e me aprimorar, pois
-            acredito que cada novo aprendizado é uma oportunidade de crescimento
-            e realização.
-          </p>
-          <p>
-            Agradeço pelo acesso ao meu portifólio, estou à disposição para
-            conversar e trocar conhecimento sempre.
-          </p>
-        </header>
-        <main className="flex flex-col items-center">
+        <header>
           <nav>
-            <ul className="list-none text-2xl flex gap-8">
-              <li>
-                <Link href={"/"}>Habilidades</Link>
+            <ul className="list-none font-bold text-2xl md:text-3xl flex justify-center gap-8">
+              <li
+                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-geral" : ""}`}
+              >
+                <NavLink href={"/test2"}>Geral</NavLink>
               </li>
-              <li>
-                <Link href={"/"}>Serviços</Link>
+              <li
+                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-projetos" : ""}`}
+              >
+                <NavLink href={"/projetos"}>Projetos</NavLink>
               </li>
-              <li>
-                <Link href={"/"}>Projetos</Link>
+              <li
+                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-serviços" : ""}`}
+              >
+                <NavLink href={"/servicos"}>Serviços</NavLink>
               </li>
-              <li>
-                <Link href={"/"}>Contato</Link>
+              <li
+                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-contato" : ""}`}
+              >
+                <NavLink href={"/contato"}>Contato</NavLink>
               </li>
             </ul>
           </nav>
-          <Technologies />
+        </header>
+        <main className="flex flex-col items-center mt-8">
+          <h1 className={`mb-4 translate-y-[100%] opacity-0 ${animated.current ? "subir-texto-habilidades" : ""}`}>Principais Habilidades</h1>
+          <div
+            className={`w-[100%] px-[3px] scale-50 opacity-0 ${animated.current ? "aumentar-habilidades" : ""}`}
+          >
+            <Habilidades />
+          </div>
+
+          {/* <div className="line-gradientX my-4"></div> */}
+
+          <div className="flex gap-8 mt-8">
+            <div
+              className={`border-4 shrink-0 border-white w-[250px] h-[250px] object-cover overflow-hidden rounded-lg -translate-x-[100%] opacity-0 ${animated.current ? "translate-image" : ""}`}
+            >
+              <Image
+                src={"/Foto Arthur.webp"}
+                width={1024}
+                height={1024}
+                alt="Arthur Nunes image"
+                className="scale-150 -translate-x-1"
+              ></Image>
+            </div>
+            <div>
+              <h1
+                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-title" : ""}`}
+              >
+                Sobre Mim
+              </h1>
+              <p
+                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text1" : ""}`}
+              >
+                Prazer, meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou
+                estudante do curso de Análise e Desenvolvimento de Sistemas.
+                Fascinado pelos desafios lógicos da programação, solucionar
+                problemas me trazem uma satisfação sem igual.
+              </p>
+              <p
+                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text2" : ""}`}
+              >
+                Obrigado por acessar meu portifólio, sinta-se à vontade para
+                entrar em contato para conversarmos, ou para contratos.
+              </p>
+            </div>
+          </div>
         </main>
       </section>
     </>
