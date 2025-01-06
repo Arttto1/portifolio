@@ -28,7 +28,7 @@ p {
   opacity: 0;
   scale: 0.5;
   animation: fall 0.5s ease-in forwards;
-  animation-delay: 2.25s;
+  animation-delay: 1.75s;
 }
 
 @keyframes fall {
@@ -44,22 +44,30 @@ p {
 
 /* ANIMAÇÃO DA BORDA DA IMAGEM */
 
-@property --border-animation{
+@property --border-animation {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
 
-.image-border-animation{
+.image-border-animation {
   position: relative;
 }
 
-.image-border-animation::after, .image-border-animation::before {
+.image-border-animation::after,
+.image-border-animation::before {
   content: "";
   position: absolute;
   inset: -4px;
   z-index: -1;
-  background: conic-gradient(from var(--border-animation), transparent , rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  background: conic-gradient(
+    from var(--border-animation),
+    transparent,
+    rgb(105, 12, 255),
+    transparent,
+    rgb(105, 12, 255),
+    transparent
+  );
   border-radius: 100%;
   animation: rotation 20s linear infinite;
 }
@@ -69,8 +77,12 @@ p {
 }
 
 @keyframes rotation {
-  0%{ --border-animation: 0deg;}
-  100% {--border-animation: 360deg;}
+  0% {
+    --border-animation: 0deg;
+  }
+  100% {
+    --border-animation: 360deg;
+  }
 }
 
 .line {
@@ -79,8 +91,8 @@ p {
   opacity: 0;
   height: 2px;
   background: linear-gradient(to left, #000000, #ffffff, #000000);
-  animation: expandLine 2s ease-out forwards;
-  animation-delay: 3.5s;
+  animation: expandLine 1s ease-out forwards;
+  animation-delay: 2.25s;
 }
 
 @keyframes expandLine {
@@ -92,7 +104,7 @@ p {
 .descer {
   transform: translateY(-20vh);
   animation: descer 0.1s ease-out forwards;
-  animation-delay: 2.75s;
+  animation-delay: 2.25s;
 }
 
 @keyframes descer {
@@ -115,7 +127,13 @@ p {
 .line-gradientY {
   height: 80vh;
   width: 2px;
-  background: linear-gradient(transparent, rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  background: linear-gradient(
+    transparent,
+    rgb(105, 12, 255),
+    transparent,
+    rgb(105, 12, 255),
+    transparent
+  );
   background-size: 100% 200%;
   animation: animateGradientY 20s linear infinite;
 }
@@ -123,7 +141,14 @@ p {
 .line-gradientX {
   height: 2px;
   width: 90vw;
-  background: linear-gradient(to right,transparent, rgb(105, 12, 255), transparent, rgb(105, 12, 255), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(105, 12, 255),
+    transparent,
+    rgb(105, 12, 255),
+    transparent
+  );
   background-size: 200% 100%;
   animation: animateGradientX 20s linear infinite;
 }
@@ -149,8 +174,11 @@ p {
 /* GRID DAS HABILIDADES */
 
 .habilidades-grid {
+  width: fit-content;
   div {
     display: flex;
+    aspect-ratio: 1 / 1;
+    height: 23vh;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -159,12 +187,18 @@ p {
     position: relative;
     background-color: black;
   }
-  div::after, div::before{
+  div::after,
+  div::before {
     content: "";
     position: absolute;
-    inset: -2px;
+    inset: -2.5px;
     z-index: -1;
-    background: linear-gradient(to top, transparent, rgb(105, 12, 255) ,transparent);
+    background: linear-gradient(
+      to top,
+      transparent,
+      rgb(105, 12, 255),
+      transparent
+    );
     border-radius: 10px;
     background-size: 100% 200%;
     animation: animate-grid-border 20s linear infinite;
@@ -187,7 +221,12 @@ p {
 
 .nav-hover:hover {
   scale: 120%;
-  background: linear-gradient(to top,rgb(105, 12, 255), rgb(11, 112, 245), rgb(105, 12, 255));
+  background: linear-gradient(
+    to top,
+    rgb(105, 12, 255),
+    rgb(11, 112, 245),
+    rgb(105, 12, 255)
+  );
   background-size: 100% 200%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -197,7 +236,12 @@ p {
 
 .nav-active {
   scale: 120%;
-  background: linear-gradient(to top,rgb(105, 12, 255), rgb(11, 112, 245), rgb(105, 12, 255));
+  background: linear-gradient(
+    to top,
+    rgb(105, 12, 255),
+    rgb(11, 112, 245),
+    rgb(105, 12, 255)
+  );
   background-size: 100% 200%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -218,30 +262,25 @@ p {
 
 .nav-geral {
   animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0s;
 }
 .nav-projetos {
   animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0.1s;
+  animation-delay: 0.125s;
 }
-.nav-serviços {
-  animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0.2s;
-}
+
 .nav-contato {
   animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0.3s;
+  animation-delay: 0.375s;
 }
 
 .subir-texto-habilidades {
   animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0.4s;
+  animation-delay: 0.625s;
 }
-
 
 .aumentar-habilidades {
   animation: descerNav 1s ease-in-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.8s;
 }
 
 /* SOBRE MIM ANIMATION  */
@@ -260,69 +299,183 @@ p {
 
 .translate-title {
   animation: translateX 1s ease-in-out forwards;
-  animation-delay: .7s;
+  animation-delay: 0.7s;
 }
 
 .translate-text1 {
   animation: translateX 1s ease-in-out forwards;
-  animation-delay: .8s;
+  animation-delay: 0.8s;
 }
 
 .translate-text2 {
   animation: translateX 1s ease-in-out forwards;
-  animation-delay: .9s;
+  animation-delay: 0.9s;
+}
+
+/* SERVIÇOS */
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  padding: 20px;
+
+  h4{
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1.25rem;
+    height: fit-content;
+    align-items: center;
+    padding: 2rem 3rem 3rem 3rem;
+    border-radius: 10px;
+    position: relative;
+    background-color: black;
+    text-align: center;
+  }
+
+  div::after,
+  div::before {
+    content: "";
+    position: absolute;
+    inset: -2.5px;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      transparent,
+      rgb(105, 12, 255),
+      transparent
+    );
+    border-radius: 10px;
+    background-size: 100% 200%;
+    animation: animate-grid-border 20s linear infinite;
+  }
+  div::before {
+    filter: blur(5px);
+  }
+}
+
+.fifth-service {
+  grid-column: 1/3;
+  width: 50%;
+  margin: auto;
 }
 
 /*PÁGINA DE CONTATO */
 
+@keyframes animate-form-border {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 200% 100%;
+  }
+}
+
 .form {
-  div{
+  div {
     display: flex;
     flex-direction: column;
   }
 
-  label{
+  .name-phone-div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  label {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
 
-  input{
-    height: 2rem;
+  input {
+    height: 2.5rem;
     border-radius: 6px;
     background-color: black;
+    padding: 0 0 0 6px;
+    font-size: 1.5rem;
     border: 2px solid white;
   }
 
   div div {
     position: relative;
-    margin-bottom: 1rem;
   }
-  
-  div div:focus-within::after, div div:focus-within::before {
+
+  .input-div:focus-within::after,
+  .input-div:focus-within::before {
     content: "";
     position: absolute;
-    inset: -4px;
-    z-index: 1;
-    background-image: conic-gradient(from var(--border-animation), transparent 70%, rgb(105, 12, 255) 30%);
+    inset: -3px;
+    z-index: -1;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(105, 12, 255),
+      transparent
+    );
     border-radius: 6px;
-    animation: rotation 10s linear infinite;
+    background-size: 200% 100%;
+    animation: animate-form-border 10s linear infinite;
   }
-  
-  div div:focus-within::before {
+
+  .input-div::before {
     filter: blur(5px);
   }
 
-  input:focus{
+  input:focus {
     outline: none;
     box-shadow: none;
     border-color: inherit;
-    border: inherit;
+    border: 2px solid transparent;
   }
 
-  textarea{
+  textarea {
     border-radius: 6px;
     height: 6rem;
     resize: none;
+    border-radius: 6px;
+    background-color: black;
+    font-size: 1.2rem;
+    padding-left: 6px;
+    border: 2px solid white;
+  }
+
+  textarea:focus {
+    border: 2px solid transparent;
+    outline: none;
+  }
+
+  .form-btn-div:hover {
+    scale: 110%;
+  }
+
+  .form-btn::before,
+  .form-btn::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    z-index: -1;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(105, 12, 255),
+      transparent
+    );
+    border-radius: 6px;
+    background-size: 200% 100%;
+    animation: animate-form-border 20s linear infinite;
+  }
+
+  .form-btn::after {
+    filter: blur(5px);
   }
 }
-

@@ -35,7 +35,7 @@
   border-right: 2px solid transparent;
   padding-right: 0.5rem;
   animation: typing 2s steps(23) forwards, blink 1s step-end 8;
-  animation-delay: 3.5s
+  animation-delay: 2s
 }
 
 @keyframes typing {

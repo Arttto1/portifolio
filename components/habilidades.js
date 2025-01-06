@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Habilidades() {
   return (
-    <div className="habilidades-grid w-[100%]  grid xl:grid-rows-3 xl:grid-cols-4 lg:grid-rows-3 lg:grid-cols-4 md:grid-rows-6 md:grid-cols-2 gap-4">
+    <div className="habilidades-grid max-w-[70vw] m-auto grid xl:grid-rows-3 xl:grid-cols-5 md:grid-rows-8 md:grid-cols-2 gap-6">
       <div>
         <Image src={"/hmtl.svg"} width={64} height={64} alt="html logo"></Image>
         <h2>HTML</h2>
@@ -20,6 +20,15 @@ export default function Habilidades() {
           alt="javascript logo"
         ></Image>
         <h2>JAVASCRIPT</h2>
+      </div>
+      <div>
+        <Image
+          src={"/typescript.svg"}
+          width={64}
+          height={64}
+          alt="typescript logo"
+        ></Image>
+        <h2>TYPESCRIPT</h2>
       </div>
       <div>
         {" "}
@@ -67,13 +76,33 @@ export default function Habilidades() {
         ></Image>
         <h2>EXPRESS.JS</h2>
       </div>
-      <div><Image
-            src={"/tailwind.svg"}
-            width={64}
-            height={64}
-            alt="tailwind logo"
-          ></Image>
-          <h2>TAILWIND</h2></div>
+      <div>
+        <Image
+          src={"/nest.svg"}
+          width={64}
+          height={64}
+          alt="nest logo"
+        ></Image>
+        <h2>NEST.JS</h2>
+      </div>
+      <div>
+        <Image
+          src={"/angular.svg"}
+          width={64}
+          height={64}
+          alt="angular logo"
+        ></Image>
+        <h2>ANGULAR</h2>
+      </div>
+      <div>
+        <Image
+          src={"/tailwind.svg"}
+          width={64}
+          height={64}
+          alt="tailwind logo"
+        ></Image>
+        <h2>TAILWIND</h2>
+      </div>
       <div>
         <Image
           src={"/mongodb.svg"}
@@ -83,26 +112,33 @@ export default function Habilidades() {
         ></Image>
         <h2>MONGODB</h2>
       </div>
-      <div><Image
+      <div>
+        <Image
           src={"/postgresql.svg"}
           width={64}
           height={64}
           alt="postgresql logo"
         ></Image>
-        <h2>POSTGRESQL</h2></div>
-        <div><Image
-          src={"/firebase.svg"}
+        <h2>POSTGRESQL</h2>
+      </div>
+      <div>
+        <Image
+          src={"/python.svg"}
           width={64}
           height={64}
-          alt="firebase logo"
+          alt="python logo"
         ></Image>
-        <h2>FIREBASE</h2></div>
-        <div><Image
-            src={"/python.svg"}
-            width={64}
-            height={64}
-            alt="python logo"
-          ></Image><h2>PYTHON</h2></div>
+        <h2>PYTHON</h2>
+      </div>
+      <div>
+        <Image
+          src={"/cpp.svg"}
+          width={64}
+          height={64}
+          alt="c++ logo"
+        ></Image>
+        <h2>C++</h2>
+      </div>
     </div>
   );
 }

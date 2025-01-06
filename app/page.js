@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 import classes from "./page.module.css";
-import Habilidades from "@/components/habilidades";
-import NavLink from "@/components/navLink";
 
 export default function Home() {
-  const router = useRouter()
 
   const arthurImage = useRef(null);
   const arthurText = useRef(null); 

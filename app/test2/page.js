@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 
 import classes from "./page.module.css";
 import Habilidades from "@/components/habilidades";
-import NavLink from "@/components/navLink";
+import Nav from "@/components/nav"; 
 
 export default function Test2() {
   const arthurImage = useRef(null);
@@ -33,12 +33,15 @@ export default function Test2() {
 
   function callAnimation(e) {
     deltaY.current = e.deltaY;
-    console.log(deltaY);
     if (deltaY.current > 0 && !animated.current) {
       animated.current = true;
       setAnimationValid(true);
       animate();
-    } else if (deltaY.current < 0 && animated.current) {
+    } else if (
+      deltaY.current < -100 &&
+      animated.current &&
+      window.scrollY === 0
+    ) {
       animated.current = false;
       unanimate();
     }
@@ -95,80 +98,46 @@ export default function Test2() {
       </section>
       <section
         ref={mainPage}
-        className="overflow-hidden h-[100vh] max-w-[80vw] m-auto pt-16 mainPage duration-1000 ease-in-out"
+        className="h-[100vh] max-w-[80vw] m-auto pt-4 mainPage duration-1000 ease-in-out"
         style={{ scale: 0, opacity: 0 }}
       >
-        <header>
-          <nav>
-            <ul className="list-none font-bold text-2xl md:text-3xl flex justify-center gap-8">
-              <li
-                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-geral" : ""}`}
-              >
-                <NavLink href={"/test2"}>Geral</NavLink>
-              </li>
-              <li
-                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-projetos" : ""}`}
-              >
-                <NavLink href={"/projetos"}>Projetos</NavLink>
-              </li>
-              <li
-                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-serviços" : ""}`}
-              >
-                <NavLink href={"/servicos"}>Serviços</NavLink>
-              </li>
-              <li
-                className={`-translate-y-[100px] opacity-0 ${animated.current ? "nav-contato" : ""}`}
-              >
-                <NavLink href={"/contato"}>Contato</NavLink>
-              </li>
-            </ul>
-          </nav>
+        <header className="h-[10vh] ">
+          <Nav/>
         </header>
-        <main className="flex flex-col items-center mt-8">
-          <h1 className={`mb-4 translate-y-[100%] opacity-0 ${animated.current ? "subir-texto-habilidades" : ""}`}>Principais Habilidades</h1>
+        <main className="flex flex-col items-center min-h-[90vh] ">
+          <h1
+            className={`mb-4 translate-y-[100%] opacity-0 ${animated.current ? "subir-texto-habilidades" : ""}`}
+          >
+            Minhas Principais Habilidades
+          </h1>
           <div
             className={`w-[100%] px-[3px] scale-50 opacity-0 ${animated.current ? "aumentar-habilidades" : ""}`}
           >
             <Habilidades />
           </div>
-
-          {/* <div className="line-gradientX my-4"></div> */}
-
-          <div className="flex gap-8 mt-8">
-            <div
-              className={`border-4 shrink-0 border-white w-[250px] h-[250px] object-cover overflow-hidden rounded-lg -translate-x-[100%] opacity-0 ${animated.current ? "translate-image" : ""}`}
-            >
-              <Image
-                src={"/Foto Arthur.webp"}
-                width={1024}
-                height={1024}
-                alt="Arthur Nunes image"
-                className="scale-150 -translate-x-1"
-              ></Image>
-            </div>
-            <div>
-              <h1
-                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-title" : ""}`}
-              >
-                Sobre Mim
-              </h1>
-              <p
-                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text1" : ""}`}
-              >
-                Prazer, meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou
-                estudante do curso de Análise e Desenvolvimento de Sistemas.
-                Fascinado pelos desafios lógicos da programação, solucionar
-                problemas me trazem uma satisfação sem igual.
-              </p>
-              <p
-                className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text2" : ""}`}
-              >
-                Obrigado por acessar meu portifólio, sinta-se à vontade para
-                entrar em contato para conversarmos, ou para contratos.
-              </p>
-            </div>
-          </div>
         </main>
+        <footer className="overflow-x-hidden flex flex-col max-w-[70vw] m-auto pb-10">
+          <h1
+            className={` translate-x-[100%] opacity-0 ${animated.current ? "translate-title" : ""}`}
+          >
+            Sobre Mim
+          </h1>
+
+          <p
+            className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text1" : ""}`}
+          >
+            Prazer, meu nome é Arthur Pagiatto Nunes, tenho 21 anos e sou
+            estudante do curso de Análise e Desenvolvimento de Sistemas.
+            Fascinado pelos desafios lógicos da programação, solucionar
+            problemas me trazem uma satisfação sem igual.
+          </p>
+          <p
+            className={`translate-x-[100%] opacity-0 ${animated.current ? "translate-text2" : ""}`}
+          >
+            Obrigado por acessar meu portifólio, sinta-se à vontade para entrar
+            em contato para conversarmos, ou para contratos.
+          </p>
+        </footer>
       </section>
     </>
   );

@@ -1,0 +1,129 @@
+@keyframes slide {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes increase {
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes subir {
+  to{ 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* MAIN */
+
+.title {
+  transform: translateX(-25%);
+  opacity: 0;
+  animation: slide 0.5s linear forwards;
+  animation-delay: 0.75s;
+}
+
+.nameLabel {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1s;
+}
+
+.nameInput {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.125s;
+}
+
+.phoneLabel {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.25s;
+}
+
+.phoneInput {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.375s;
+}
+
+.emailLabel {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.5s;
+}
+
+.emailInput {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.625s;
+}
+
+.textareaLabel {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.75s;
+}
+
+.textarea {
+  scale: 0.75;
+  opacity: 0;
+  animation: increase 0.5s linear forwards;
+  animation-delay: 1.875s;
+}
+
+.formBtn {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 2s;
+}
+
+/* FOOTER */
+
+.phoneLogo {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 2.25s;
+}
+
+.phoneText {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 2.5s;
+}
+
+.emailLogo {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 2.75s;
+}
+
+.emailText {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 3s;
+}
+
+.linkedinLogo {
+  transform: translateY(200%);
+  opacity: 0;
+  animation: subir 0.5s linear forwards;
+  animation-delay: 3.25s;
+}
